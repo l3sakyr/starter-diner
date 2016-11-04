@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 
+5. SQL dump and deleted starter_SQL - @CK & Thach
 4. Added navbar and controller for CRUD - @CK
 3. Added toggle controller + listitem - @Thach Le
 2. Template, template-shopping, template-secondary, fix config & Navbar, database MYSQL - @CK
