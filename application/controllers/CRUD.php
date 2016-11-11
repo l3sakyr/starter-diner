@@ -12,12 +12,13 @@ class Crud extends Application
         }
         else if($this->data['userrole'] == 'admin') {
         	$result = 'Admin entered';
+			$this->data['items'] = $this->menu->all();//added//
         }
         else if($this->data['userrole'] == 'user') {
         	$result = 'Admin only no user';
+			$this->data['content'] = $result;
         }
-		$this->data['items'] = $this->menu->all();//added//
-        $this->data['content'] = $result;
+        
 	    $this->render();
 	}
 	public function edit($id=null) {
@@ -34,6 +35,14 @@ class Crud extends Application
 		}
 		
 		$this->data['content'] = "Looking at " . $key . ':' . $record->name;
+		$this->data['fid'] = makeTextField('Menu code', 'id', $record->id);
+		$this->data['fname'] = makeTextField('Item name', 'name', $record->name);
+		$this->data['fdescription'] = makeTextField('Description', 'description', $record->description);
+		$this->data['fprice'] = makeTextField('Price, each', 'price', $record->price);
+		$this->data['fpicture'] = makeTextField('Item image', 'picture', $record->picture);
+		$this->data['fcategory'] = makeTextField('Category', 'category', $record->category);
+		
+		$this->data['pagebody'] = "mtce-edit";
 		$this->render();
 	}
 }
