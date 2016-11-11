@@ -27,7 +27,7 @@ class Crud extends Application
 		$record = $this->session->userdata('record');
 		
 		//db
-		if(empty($key)){
+		if(empty($record)){
 			$record = $this->menu->get($id);
 			$key = $id;
 			$this->session->set_userdata('key',$id);
@@ -50,5 +50,21 @@ class Crud extends Application
                 
 		$this->data['pagebody'] = "mtce-edit";
 		$this->render();
+	}
+	public function cancel() {
+		$this->session->unset_userdata('key');
+		$this->session->unset_userdata('record');
+		$this->index();
+	}
+	public function save() {        
+		// try the session first        
+		$key = $this->session->userdata('key');        
+		$record = $this->session->userdata('record');        
+		// if not there, nothing is in progress        
+		if (empty($record)) {                
+		$this->index();        
+		}        
+		// validate        
+		// save or not
 	}
 }
