@@ -7,7 +7,7 @@ class Menu extends MY_Model {
 	{
 		parent::__construct();
 	}
-	public ction rules() {
+	public function rules() {
 		$config = [        
 			['field'=>'id', 'label'=>'Menu code', 'rules'=> 'required|integer'],
 			['field'=>'name', 'label'=>'Item name', 'rules'=> 'required'],
