@@ -30,8 +30,11 @@ class Shopping extends Application
 		$this->render('template');  // use the default template
 	}
 	public function keep_shopping() {
-		$stuff = file_get_contents('../data/receipt.md');
+		$order = new Order($this->session->userdata('order'));
+        $stuff = $order->receipt();
         $this->data['receipt'] = $this->parsedown->parse($stuff);
+		//$stuff = file_get_contents('../data/receipt.md');
+        //$this->data['receipt'] = $this->parsedown->parse($stuff);
 		$this->data['content'] = '';
 		
 		// pictorial menu
@@ -73,6 +76,6 @@ class Shopping extends Application
 		$this->session->set_userdata('order',(array)$order);
 
 		$this->keep_shopping();
-
+		redirect('/shopping');
 	}
 }
