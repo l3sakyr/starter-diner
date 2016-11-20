@@ -20,4 +20,17 @@ class Order extends CI_Model {
 				$this->items[$which]++;
 			}
 		}
+		public function receipt() {
+			$total = 0;
+			$result = $this->data['pagetitle'] . '  ' . PHP_EOL;
+			$result .= date(DATE_ATOM) . PHP_EOL;
+			$result .= PHP_EOL . 'Your Order:'. PHP_EOL . PHP_EOL;
+			foreach($this->items as $key => $value) {
+				$menu = $this->menu->get($key);
+				$result .= '- ' . $value . ' ' . $menu->name . PHP_EOL;
+				$total += $value * $menu->price;
+			}
+			$result .= PHP_EOL . 'Total: $' . number_format($total, 2) . PHP_EOL;
+			return $result;
+		}
 }
